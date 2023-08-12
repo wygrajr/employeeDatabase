@@ -1,5 +1,7 @@
 // Import and require mysql2
 const mysql = require('mysql2');
+const cTable = require('console.table');
+
 
 // Connect to database
 const db = mysql.createConnection(
@@ -29,7 +31,7 @@ async function getDepartments() {
 }
 
 getDepartments().then(result => {
-  console.log(result)
+  console.table(result)
 })
 
 
