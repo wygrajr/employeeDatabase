@@ -136,7 +136,18 @@ inquirer
           console.table(await getRoles());
       case "view all employees":
           console.table(await getEmployeess());
-  }
-  })
+      case "add a department":
+        inquirer
+        .prompt([
+          {
+            type: 'input',
+            message: 'Enter the name department',
+            name: 'departmentName',
+          },
+        ])
+        .then(async (data) => {
+          await addDepartment(data.departmentName);
+        });
+  }})
 
 
