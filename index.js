@@ -141,12 +141,78 @@ inquirer
         .prompt([
           {
             type: 'input',
-            message: 'Enter the name department',
+            message: 'Enter the name of department',
             name: 'departmentName',
           },
         ])
         .then(async (data) => {
           await addDepartment(data.departmentName);
+        });
+      case "add a role":
+        inquirer
+        .prompt([
+          {
+            type: 'input',
+            message: 'Enter the title of role',
+            name: 'titleName',
+          },
+          {
+            type: 'input',
+            message: 'Enter the salary of role',
+            name: 'salary',
+          },
+          {
+            type: 'input',
+            message: 'Enter the department ID of role',
+            name: 'departmentId',
+          },
+        ])
+        .then(async (data) => {
+          await addRole(data.titleName,data.salary,data.departmentId);
+        });
+      case "add an employee":
+        inquirer
+        .prompt([
+          {
+            type: 'input',
+            message: 'Enter the first name',
+            name: 'firstName',
+          },
+          {
+            type: 'input',
+            message: 'Enter the last name',
+            name: 'lastName',
+          },
+          {
+            type: 'input',
+            message: 'Enter the role ID',
+            name: 'roleId',
+          },
+          {
+            type: 'input',
+            message: 'Enter the manger ID',
+            name: 'managerId',
+          },
+        ])
+        .then(async (data) => {
+          await addEmployees(data.firstName,data.lastName,data.roleId,data.managerId);
+        });
+      case "update an employee role":
+        inquirer
+        .prompt([
+          {
+            type: 'input',
+            message: 'Enter the employee ID',
+            name: 'employeeId',
+          },
+          {
+            type: 'input',
+            message: 'Enter the role ID',
+            name: 'roleId',
+          },
+        ])
+        .then(async (data) => {
+          await updateEmployee(data.employeeId,data.roleId);
         });
   }})
 
