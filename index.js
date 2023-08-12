@@ -1,6 +1,7 @@
 // Import and require mysql2
 const mysql = require('mysql2');
 const cTable = require('console.table');
+const inquirer = require('inquirer');
 
 
 // Connect to database
@@ -118,11 +119,24 @@ async function updateEmployee(employeeId, roleId) {
   })
 }
 
-
-// getDepartments().then(result => {
-//   console.table(result)
-// })
-
-addDepartment('comp sci')
+inquirer
+  .prompt([
+    {
+      type: 'list',
+      message: 'Select an Option',
+      name: 'option',
+      choices: ['view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update an employee role'],
+    },
+  ])
+  .then(async (data) => {
+    switch (data.option) {
+      case "view all departments":
+          console.table(await getDepartments());
+      case "view all roles":
+          console.table(await getRoles());
+      case "view all employees":
+          console.table(await getEmployeess());
+  }
+  })
 
 
